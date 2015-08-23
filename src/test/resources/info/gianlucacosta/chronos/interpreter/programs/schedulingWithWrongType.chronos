@@ -1,0 +1,20 @@
+event start {
+    print "Hello";
+
+    create anotherEvent called myNotice;
+
+    name(myNotice) := "world";
+
+    schedule yetAnotherEvent called myNotice at 10; //FAILURE!
+}
+
+
+event anotherEvent {
+    println ", " + name(anotherEvent) + "! ^__^";
+    destroy anotherEvent;
+}
+
+
+event yetAnotherEvent {
+    println "Hi!";
+}

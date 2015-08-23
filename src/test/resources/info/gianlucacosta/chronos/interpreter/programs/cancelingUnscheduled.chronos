@@ -1,0 +1,13 @@
+//This program should fail
+
+event start {
+    println "Hello";
+
+    create anotherEvent;
+
+    cancel anotherEvent; //FAILURE!
+}
+
+event anotherEvent {
+    assert false;
+}

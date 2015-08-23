@@ -1,0 +1,35 @@
+queue sortedQueue sorted by title;
+
+event start {
+    create album;
+    title(album) := "Rock Symphonies";
+    year(album) := 2010;
+
+    create book;
+    title(book) := "Alice in Wonderland";
+
+
+    insert album into sortedQueue;
+    insert book into sortedQueue;
+
+    firstItem := get first from sortedQueue;
+    assert firstItem = book;
+
+    secondItem := get first from sortedQueue;
+    assert secondItem = album;
+    assert year(secondItem) = 2010;
+
+    assert isEmpty(sortedQueue);
+
+    insert album into sortedQueue;
+    assert not isEmpty(sortedQueue);
+
+    create rabbit;
+    name(rabbit) := "white rabbit";
+
+    insert rabbit into sortedQueue; //FAILURE!
+
+    destroy album;
+    destroy book;
+    destroy rabbit;
+}

@@ -1,0 +1,38 @@
+event start {
+    NUM_CYCLES := 300;
+
+    uniformRandomSeed := uniformRandom(1, 10000);
+
+    min := 739;
+    max := 825.0;
+    setRandomSeed uniformRandomSeed;
+    firstUnifOutput := uniformRandom(min, max);
+
+    x := 1;
+    while x <= NUM_CYCLES {
+        setRandomSeed uniformRandomSeed;
+        currentUniformRandom := uniformRandom(min, max);
+
+        assert currentUniformRandom = firstUnifOutput;
+        x := x + 1;
+    }
+
+
+
+    expRandomSeed := uniformRandom(1, 10000);
+    averageValue := 8;
+    setRandomSeed expRandomSeed;
+    firstExpValue := expRandom(averageValue);
+
+
+    x := 1;
+    while x <= NUM_CYCLES {
+        setRandomSeed expRandomSeed;
+
+        currentExpRandom := expRandom(averageValue);
+
+        assert currentExpRandom = firstExpValue;
+
+        x := x + 1;
+    }
+}

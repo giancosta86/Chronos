@@ -1,0 +1,11 @@
+//This program should fail
+
+event start {
+    assert true;
+
+    println "Test";
+
+    assert false; //FAILURE!
+
+    println "Never reached";
+}

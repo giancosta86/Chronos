@@ -1,0 +1,5 @@
+event start {
+    create car;
+
+    schedule car at 10; //FAILURE!
+}

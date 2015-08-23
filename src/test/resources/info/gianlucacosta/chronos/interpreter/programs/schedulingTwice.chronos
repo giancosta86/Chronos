@@ -1,0 +1,14 @@
+//This program should fail
+
+event start {
+    println "Hello";
+
+    create anotherEvent;
+
+    schedule anotherEvent at 10;
+    schedule anotherEvent at 15; //FAILURE!
+}
+
+event anotherEvent {
+    println "Hi!";
+}

@@ -1,0 +1,71 @@
+event start {
+    bookTitle := "Harry Potter and the Deathly Hallows";
+
+    create book;
+    author(book) := "J. K. Rowling";
+    title(book) := bookTitle;
+
+    assert author(book) = "J. K. Rowling";
+    assert title(book) = bookTitle;
+
+    output := "Harry Potter's saga was written by: " + author(book) + "! ^__^";
+
+    assert output = "Harry Potter's saga was written by: J. K. Rowling! ^__^";
+
+
+    create alpha;
+    create beta;
+    create gamma;
+
+    stringVar := "Nested entities! ^__^";
+    x(alpha) := beta;
+    y(beta) := gamma;
+    z(gamma) := stringVar;
+
+    assert z(y(x(alpha))) = stringVar;
+
+    create car called example;
+    name(example) := "Example car";
+
+    assert name(example) = "Example car";
+
+    create example1;
+    create example2;
+    assert example1 = example1;
+    assert example2 = example2;
+    assert example1 != example2;
+    destroy example1;
+    destroy example2;
+
+
+    destroy book;
+    destroy alpha;
+    destroy beta;
+    destroy gamma;
+    destroy example;
+
+    create garbage1;
+    call cleaner(garbage1);
+
+    create someOtherEntity called garbage2;
+    call cleaner(garbage2);
+
+
+
+    create book called refTest;
+    title(refTest) := "Reference test";
+    refTest2 := refTest;
+    title(refTest2) := "New title";
+    assert title(refTest) = "New title";
+
+    create book called refTest3;
+    entityAttrib(refTest3) := refTest2;
+    destroy entityAttrib(refTest3);
+
+    destroy refTest3;
+}
+
+
+procedure cleaner(myEntity) {
+    destroy myEntity;
+}

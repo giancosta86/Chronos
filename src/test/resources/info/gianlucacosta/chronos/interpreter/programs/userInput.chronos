@@ -1,0 +1,25 @@
+event start {
+    create sumOperands;
+
+    readDouble "Please, enter a double X: " x(sumOperands);
+    readInt "Please, enter an int Y: " y(sumOperands);
+
+    z := x(sumOperands) + y(sumOperands);
+    println "The result is: " + z;
+
+    destroy sumOperands;
+
+
+    variablePromptString := "Please, enter a boolean: ";
+
+    readBool variablePromptString myBool;
+    println myBool;
+
+    create book;
+
+    variableIntegerInput := 56;
+    readString variableIntegerInput title(book);
+    println title(book);
+
+    destroy book;
+}

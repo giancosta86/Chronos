@@ -1,0 +1,166 @@
+/*§
+  ===========================================================================
+  Chronos
+  ===========================================================================
+  Copyright (C) 2015 Gianluca Costa
+  ===========================================================================
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  ===========================================================================
+*/
+
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {
+    repositories {
+        maven {
+            url 'https://dl.bintray.com/giancosta86/Hephaestus'
+        }
+
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:3.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
+        classpath 'info.gianlucacosta.aurora:aurora:2.1'
+        classpath 'com.github.maiflai:gradle-scalatest:0.8'
+    }
+}
+
+apply plugin: 'scala'
+apply plugin: 'antlr'
+apply plugin: 'application'
+apply plugin: 'com.github.maiflai.scalatest'
+
+apply plugin: 'info.gianlucacosta.aurora'
+
+
+group = 'info.gianlucacosta.chronos'
+archivesBaseName = "chronos"
+version = '1.0'
+
+description = 'Programming language for discrete event simulation'
+
+
+ext.facebookPage = "https://www.facebook.com/chronos.language"
+
+
+mainClassName = 'info.gianlucacosta.chronos.App'
+
+sourceSets {
+    generated {
+        java {
+            srcDirs = ['src/generated/java']
+        }
+    }
+
+    main {
+        scala {
+            srcDirs += ['src/generated/java']
+        }
+    }
+}
+
+
+dependencies {
+    compile 'org.scala-lang:scala-library:2.11.7'
+    compile 'org.antlr:antlr4-runtime:4.5.1'
+    compile 'org.scala-lang:scala-xml:2.11.0-M4'
+
+    testCompile 'org.scalatest:scalatest_2.11:2.2.5'
+    testRuntime 'org.pegdown:pegdown:1.1.0'
+
+    antlr 'org.antlr:antlr4:4.5.1'
+}
+
+
+
+aurora {
+    docTask = 'scaladoc'
+    gitHubUser = 'giancosta86'
+
+    author {
+        name = 'Gianluca Costa'
+        email = 'gianluca@gianlucacosta.info'
+        url = 'http://gianlucacosta.info/'
+    }
+
+
+    bintray {
+        user = project.bintrayUser
+        key = project.bintrayKey
+        repo = 'Hephaestus'
+        licenses = ['Apache-2.0']
+        labels = [
+                'programming language',
+                'discrete event simulation',
+                'DES',
+                'interactive',
+                'interpreter',
+                'command-line',
+                'Scala'
+        ]
+    }
+}
+
+
+moonLicense {
+    license = apache2
+
+    productInfo {
+        productName = 'Chronos'
+        inceptionYear = 2015
+        copyrightHolder = 'Gianluca Costa'
+    }
+
+    includes = includes + [
+            /.*\.g4$/: javaFormat
+    ]
+}
+
+
+
+
+task deleteGeneratedFiles(type: Delete) {
+    delete 'src/generated'
+}
+
+generateGrammarSource {
+    outputDirectory = project.file("src/generated/java/info/gianlucacosta/chronos/parser")
+    arguments += [
+            '-visitor',
+            '-long-messages',
+            '-no-listener',
+            '-Werror'
+    ]
+}
+generateGrammarSource.dependsOn deleteGeneratedFiles
+
+
+clean.dependsOn deleteGeneratedFiles
+
+
+
+processResources {
+    filesMatching('**/Language.properties.xml') {
+        filter ReplaceTokens, tokens: [
+                'name'          : project.moonLicense.productInfo.productName,
+                'version'       : project.version,
+                'copyrightYears': project.moonLicense.getCopyrightYears(),
+                'license'       : project.moonLicense.license.name,
+                'url'           : project.url.toString(),
+                'facebookPage'  : project.facebookPage,
+                'release'       : project.auroraSettings.release.toString()
+        ]
+    }
+}

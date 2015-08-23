@@ -1,0 +1,10 @@
+//This program should fail
+
+procedure gamma(x, x) {
+    println "Hello!";
+}
+
+
+event start {
+    call printSum(14, 3);
+}

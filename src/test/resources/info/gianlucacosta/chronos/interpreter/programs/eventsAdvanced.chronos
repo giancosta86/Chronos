@@ -1,0 +1,70 @@
+alpha1Time := 10;
+alpha2Time := 20;
+alpha3Time := 30;
+betaDelay := 5.8;
+
+alpha1Value := 50;
+alpha2Value := 60;
+alpha2bisValue := alpha2Value * 10;
+
+event start {
+    create alpha called alpha1;
+    x(alpha1) := alpha1Value;
+
+    create alpha called alpha2;
+    x(alpha2) := alpha2Value;
+
+
+    create alpha called alpha2bis;
+    x(alpha2bis) := alpha2bisValue;
+
+    create alpha called alpha3;
+    global a := alpha3;
+
+    println "In main";
+
+
+    schedule alpha called alpha2 at alpha2Time;
+
+    schedule alpha called alpha3 at alpha3Time;
+
+    schedule alpha called alpha1 at alpha1Time;
+
+    schedule alpha called alpha2bis at alpha2Time;
+}
+
+
+event alpha {
+    println "X = " + x(alpha);
+
+    if x(alpha) = alpha1Value {
+        assert time.v = alpha1Time;
+        create beta;
+        schedule beta after betaDelay;
+    } else if x(alpha) = alpha2Value {
+        assert time.v = alpha2Time;
+    } else if x(alpha) = alpha2bisValue {
+        assert time.v = alpha2Time;
+    } else {
+        assert false;
+    }
+
+     destroy alpha;
+}
+
+
+event beta {
+    println ("In beta!");
+
+    assert time.v = alpha1Time + betaDelay;
+
+    cancel alpha called a;
+    destroy a;
+
+    create alpha;
+    schedule alpha at 60;
+    cancel alpha;
+    destroy alpha;
+
+    destroy beta;
+}

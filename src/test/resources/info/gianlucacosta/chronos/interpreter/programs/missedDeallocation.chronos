@@ -1,0 +1,6 @@
+//This program should fail
+
+event start {
+    create car;
+    create book called x;
+}

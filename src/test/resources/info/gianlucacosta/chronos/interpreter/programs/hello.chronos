@@ -1,0 +1,7 @@
+event start {
+    /*
+    This is a comment! ^__^
+    */
+
+    println "Hello, world! ^__^";  //This is a comment, too
+}

@@ -1,0 +1,35 @@
+map myMap;
+
+event start {
+    x := 93;
+    myMap(7) := x;
+
+    assert myMap(7) = 93;
+
+
+    myMap(90 + 8.7) := "Hello";
+    y := 98.7;
+    assert myMap(y) = "Hello";
+
+
+    myMap("gamma") := 90;
+    myMap("beta") :="gamma";
+    myMap("alpha") := "beta";
+
+    assert myMap(myMap(myMap("alpha"))) = 90;
+
+    myMap(inf) := 34;
+    assert myMap(+inf) = 34;
+
+    myMap(-inf) := false;
+    assert myMap(-inf) = false;
+
+    //Maps are global identifiers
+    global myMap := 9;
+    call checkMyMap;
+}
+
+
+procedure checkMyMap {
+    assert myMap = 9;
+}

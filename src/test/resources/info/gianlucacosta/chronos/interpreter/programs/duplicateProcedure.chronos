@@ -1,0 +1,15 @@
+//This program should fail
+
+event start {
+    println "Hello, world! ^__^";
+}
+
+
+procedure beta {
+    println "Something";
+}
+
+
+procedure beta {
+    println "Something else";
+}

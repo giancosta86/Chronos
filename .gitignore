@@ -1,0 +1,6 @@
+.gradle/**
+.idea/**
+build/**
+src/generated/**
+out/**
+*.iml

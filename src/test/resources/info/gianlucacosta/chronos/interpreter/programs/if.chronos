@@ -1,0 +1,47 @@
+event start {
+    a := 9;
+
+    if a > 5 {
+        println "Omicron";
+        println "Ro";
+    }
+
+    b := "Hello, " + "world";
+
+    if b = "Hello, world" {
+        println "Sigma";
+    } else {
+        assert false;
+    }
+
+    c := +inf;
+    if (c < 0) {
+        assert false;
+    } else {
+        println "Tau";
+    }
+
+
+    if 9 > 8 {
+        if 4 != 3 {
+            println("Omega");
+        } else {
+            assert false;
+        }
+    }
+
+
+    z := 7;
+
+    if (z < 0) {
+        assert false;
+    } else if (z < 5) {
+        assert false;
+    } else if (z > 10) {
+        assert false;
+    } else if (z = 7) {
+        assert true;
+    } else {
+        assert false;
+    }
+}

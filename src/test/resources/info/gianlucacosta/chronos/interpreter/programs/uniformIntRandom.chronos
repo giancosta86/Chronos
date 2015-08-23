@@ -1,0 +1,36 @@
+map numOfGeneratedValues;
+
+event start {
+    numCycles := 10000;
+    min := 1;
+    max := 6;
+
+    i := min;
+    while i <= max {
+        numOfGeneratedValues(i) := 0;
+        i := i +1;
+    }
+
+    i := 1;
+    while i <= numCycles {
+        discreteValue := uniformIntRandom(min, max);
+
+        numOfGeneratedValues(discreteValue) := numOfGeneratedValues(discreteValue) + 1;
+
+        i := i + 1;
+    }
+
+
+    totalCount := 0;
+
+    i := min;
+    while i <= max {
+        numValues := numOfGeneratedValues(i);
+        assert numValues > 0;
+
+        totalCount := totalCount + numValues;
+        i := i + 1;
+    }
+
+    assert totalCount = numCycles;
+}

@@ -1,0 +1,17 @@
+event start {
+    create anotherEvent;
+    name(anotherEvent) := "world";
+
+    schedule anotherEvent at 10;
+
+    create anotherEvent called myEventNotice;
+    name(myEventNotice) := "Scala";
+
+    schedule anotherEvent called myEventNotice at 20;
+}
+
+
+event anotherEvent {
+    println "Hello, " + name(anotherEvent) + "! ^__^";
+    destroy anotherEvent;
+}

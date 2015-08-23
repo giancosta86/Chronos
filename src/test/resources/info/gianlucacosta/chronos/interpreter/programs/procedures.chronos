@@ -1,0 +1,26 @@
+procedure printSum(x, y) {
+    localVar := 9;
+
+    create operands;
+    x(operands) := x;
+    y(operands) := y;
+    call sum(operands);
+
+    println "Your result is: " + result(operands);
+    destroy operands;
+
+    assert localVar = 9;
+}
+
+
+event start {
+    call printSum(14, 3);
+}
+
+procedure sum(sumOperands) {
+    localVar := 52;
+
+    result(sumOperands) := x(sumOperands) + y(sumOperands);
+
+    assert localVar = 52;
+}

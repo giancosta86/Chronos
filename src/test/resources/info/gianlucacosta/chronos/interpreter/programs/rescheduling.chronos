@@ -1,0 +1,23 @@
+deltaTime := 10;
+MAX_TRIGGERS := 3;
+
+event start {
+    create anotherEvent;
+
+    triggers(anotherEvent) := 0;
+
+    schedule anotherEvent after 0;
+}
+
+
+event anotherEvent {
+    println toInt(time.v);
+
+    triggers(anotherEvent) := triggers(anotherEvent) + 1;
+
+    if triggers(anotherEvent) = MAX_TRIGGERS {
+        destroy anotherEvent;
+    } else {
+        schedule anotherEvent at time.v + deltaTime;
+    }
+}

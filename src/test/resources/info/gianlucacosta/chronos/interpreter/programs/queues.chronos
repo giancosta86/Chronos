@@ -1,0 +1,131 @@
+queue myFifoQueue fifo;
+queue myLifoQueue lifo;
+queue mySortedAscQueue sorted by title;
+queue mySortedDescQueue sorted by title desc;
+
+
+event start {
+        create alphaBook;
+        create alpha2Book;
+        create betaBook;
+        create gammaBook;
+
+        title(alphaBook) := "Alpha";
+        title(alpha2Book) := "Alpha 2";
+        title(betaBook) := "Beta";
+        title(gammaBook) := "Gamma";
+
+
+        /*
+         *    FIFO QUEUE
+         */
+        assert isEmpty(myFifoQueue);
+
+        insert betaBook into myFifoQueue;
+        insert alphaBook into myFifoQueue;
+        insert alpha2Book into myFifoQueue;
+        insert gammaBook into myFifoQueue;
+
+
+        b := alpha2Book;
+        remove b from myFifoQueue;
+
+        item1 := get first from myFifoQueue;
+        assert title(item1) = title(betaBook);
+
+        item2 := get first from myFifoQueue;
+        assert title(item2) = title(alphaBook);
+
+        item3 := get first from myFifoQueue;
+        assert title(item3) = title(gammaBook);
+
+        assert isEmpty(myFifoQueue);
+
+
+        /*
+         *    LIFO QUEUE
+         */
+        assert isEmpty(myLifoQueue);
+
+        insert betaBook into myLifoQueue;
+        insert alphaBook into myLifoQueue;
+        insert alpha2Book into myLifoQueue;
+        insert gammaBook into myLifoQueue;
+
+
+        b := alpha2Book;
+        remove b from myLifoQueue;
+
+
+        item1 := get first from myLifoQueue;
+        assert title(item1) = title(gammaBook);
+
+        item2 := get first from myLifoQueue;
+        assert title(item2) = title(alphaBook);
+
+        item3 := get first from myLifoQueue;
+        assert title(item3) = title(betaBook);
+
+        assert isEmpty(myLifoQueue);
+
+
+
+        /*
+         *    SORTED QUEUE (ASC)
+         */
+         assert isEmpty(mySortedAscQueue);
+
+         insert betaBook into mySortedAscQueue;
+         insert alphaBook into mySortedAscQueue;
+         insert alpha2Book into mySortedAscQueue;
+         insert gammaBook into mySortedAscQueue;
+
+         b := alpha2Book;
+         remove b from mySortedAscQueue;
+
+
+         item1 := get first from mySortedAscQueue;
+         assert title(item1) = title(alphaBook);
+
+         item2 := get first from mySortedAscQueue;
+         assert title(item2) = title(betaBook);
+
+         item3 := get first from mySortedAscQueue;
+         assert title(item3) = title(gammaBook);
+
+         assert isEmpty(mySortedAscQueue);
+
+
+
+        /*
+         *    SORTED QUEUE (DESC)
+         */
+         assert isEmpty(mySortedDescQueue);
+
+         insert betaBook into mySortedDescQueue;
+         insert alphaBook into mySortedDescQueue;
+         insert alpha2Book into mySortedDescQueue;
+         insert gammaBook into mySortedDescQueue;
+
+
+         b := alpha2Book;
+         remove b from mySortedDescQueue;
+
+
+         item1 := get first from mySortedDescQueue;
+         assert title(item1) = title(gammaBook);
+
+         item2 := get first from mySortedDescQueue;
+         assert title(item2) = title(betaBook);
+
+         item3 := get first from mySortedDescQueue;
+         assert title(item3) = title(alphaBook);
+
+         assert isEmpty(mySortedDescQueue);
+
+
+        destroy alphaBook;
+        destroy alpha2Book;
+        destroy betaBook;
+        destroy gammaBook;
+}

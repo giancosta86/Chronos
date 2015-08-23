@@ -1,0 +1,26 @@
+event start {
+    intValue := 90;
+    println intValue;
+    assert intValue = 90;
+
+    alpha := 5.3;
+    beta := 7;
+
+    gamma := alpha + ((beta - 4) * 2);
+
+    println gamma;
+    assert gamma = 11.3;
+
+
+    firstString := "Hello";
+    secondString := ", world! ^__^";
+
+    println (firstString + secondString) = "Hello, world! ^__^";
+    check := (firstString + secondString) = "Hello, world! ^__^";
+    assert check;
+
+    global myGlobal := 286;
+    assert myGlobal = 286;
+
+    println "The result is: " + myGlobal;
+}

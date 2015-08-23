@@ -1,0 +1,30 @@
+event start {
+    call f;
+    create closingEvent;
+    schedule closingEvent after 0;
+
+    return;
+
+    assert false;
+}
+
+
+
+procedure f {
+    println "Alpha";
+    call g;
+    println "Gamma";
+    exit;
+    assert false;
+}
+
+procedure g {
+    println "Beta";
+    return;
+    assert false;
+}
+
+event closingEvent {
+  exit;
+  assert false;
+}

@@ -1,0 +1,5 @@
+event start {
+    create book;
+    destroy book;
+    destroy book; //FAILURE!
+}

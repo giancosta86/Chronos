@@ -1,0 +1,36 @@
+a := 4;
+
+event start {
+    assert a = 4;
+
+    call f;
+
+    assert a = 70;
+
+    a := 45;
+
+    call omega;
+}
+
+
+procedure f {
+    assert a = 4;
+    a := 8;
+    assert a = 8;
+
+    call g;
+
+    assert a = 8;
+}
+
+
+procedure g {
+    assert a = 4;
+    global a := 70;
+}
+
+
+
+procedure omega {
+    assert a = 70;
+}

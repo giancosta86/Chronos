@@ -1,0 +1,64 @@
+event start {
+    println 3 < 5;
+    println 3.4 < 0.4;
+
+    println 4 <= 11;
+    println 5 <= 5;
+    println 7 <= 3;
+
+    println 8 = 8.0;
+    println 3 = 9;
+
+
+    println 4 != 2;
+    println 2.0 != 2;
+    println 9 != 9;
+
+    println 7 > 2;
+    println 5 > 5;
+
+
+    println 10 >= 10;
+    println 11.7 >= 2;
+    println 3.4 >= 22;
+
+    println (8 < 9) = true;
+    println (false = ((7 - 4) < -1));
+
+
+    assert (not true) = false;
+    assert (not true) = false;
+    assert (not false) = true;
+    assert not false;
+
+    assert (true or true) = true;
+    assert (true or false) = true;
+    assert (false or true) = true;
+    assert false or true;
+    assert (false or false) = false;
+    assert not (false or false);
+
+    assert (true and true) = true;
+    assert true and true;
+    assert (true and false) = false;
+    assert (false and true) = false;
+    assert (false and false) = false;
+    assert not (false or false);
+
+
+    assert true or false or true;
+    assert not false or false or false;
+
+    assert (not true and false and true) = false;
+    assert not(true and false and true) = true;
+
+    assert false or false or true;
+    assert not false or false or true;
+
+    assert not 4 > 53;
+
+    assert 3 < 5 and 9 > 8 or -2 < 0;
+
+
+
+}

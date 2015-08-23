@@ -1,0 +1,28 @@
+event start {
+    NUM_CYCLES := 300;
+
+    x := 1;
+    while x <= NUM_CYCLES {
+        min := 739;
+        max := 825.0;
+
+        currentRandom := uniformRandom(min, max);
+
+        assert(currentRandom >= min);
+        assert(currentRandom <= max);
+
+        x := x + 1;
+    }
+
+
+    x := 1;
+    while x <= NUM_CYCLES {
+        averageValue := 8;
+
+        currentRandom := expRandom(averageValue);
+
+        assert(currentRandom >= 0);
+
+        x := x + 1;
+    }
+}

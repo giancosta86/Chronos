@@ -1,0 +1,13 @@
+$disableHeapCheck;
+
+event start {
+    create car;
+    create book called x;
+
+
+    create anotherCar;
+    destroy anotherCar;
+
+    create book called y;
+    destroy y;
+}

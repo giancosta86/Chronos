@@ -1,0 +1,45 @@
+event start {
+    assert toDouble(20.9) = 20.9;
+    assert toDouble(20) = 20.0;
+    assert toDouble(true) = 1.0;
+    assert toDouble(false) = 0.0;
+    assert toDouble("20.9") = 20.9;
+
+    assert toInt(20.9) = 20;
+    assert toInt(20) = 20;
+    assert toInt(true) = 1;
+    assert toInt(false) = 0;
+    assert toInt("20") = 20;
+
+
+    assert toBool(20.9) = true;
+    assert toBool(0.0) = false;
+    assert toBool(20) = true;
+    assert toBool(0) = false;
+    assert toBool(true) = true;
+    assert toBool(false) = false;
+    assert toBool("true") = true;
+    assert toBool("false") = false;
+    assert toBool("any") = false;
+
+
+    assert toString(20.9) = "20.9";
+    assert toString(-20.9) = "-20.9";
+    assert toString(-45) = "-45";
+    assert toString(+inf) = "∞";
+    assert toString(-inf) = "-∞";
+    assert toString(true) = "true";
+    assert toString(false) = "false";
+    assert toString("Hello") = "Hello";
+
+
+    assert floor(20.2) = 20;
+    assert floor(-20.2) = -21;
+    assert floor(20) = 20;
+    assert floor(-20) = -20;
+
+    assert ceil(20.2) = 21;
+    assert ceil(-20.2) = -20;
+    assert ceil(20) = 20;
+    assert ceil(-20) = -20;
+}

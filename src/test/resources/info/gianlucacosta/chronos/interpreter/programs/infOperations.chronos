@@ -1,0 +1,54 @@
+event start {
+    assert inf = +inf;
+    assert inf = -(-inf);
+
+    assert inf > 0;
+    assert -inf < 0;
+    assert inf > -inf;
+
+
+    assert 3 + inf = inf;
+    assert 3.9 + -inf = -inf;
+
+    assert -4 + inf = inf;
+    assert -4.9 + -inf = -inf;
+
+
+    assert 3 - inf = -inf;
+    assert 3.3 - -inf = +inf;
+
+    assert -4 - inf = -inf;
+    assert -9.2 - inf = -inf;
+    assert -15 - -inf = +inf;
+
+
+
+    assert "Your value is: " + inf = "Your value is: ∞";
+    assert "Your value is: " + -inf = "Your value is: -∞";
+
+    assert inf * +inf = inf;
+    assert inf * -inf = -inf;
+    assert -inf * -inf = +inf;
+
+    assert 0 / inf = 0;
+    assert 0 / -inf = 0;
+
+    assert 7 / inf = 0;
+    assert 7.6 / -inf = 0;
+    assert -4 / inf = 0;
+    assert -2 / -inf = 0;
+
+    assert toBool(inf);
+    assert toBool(-inf);
+
+
+    assert 9 / 0.0 = +inf;
+    assert 9.0 / 0.0 = +inf;
+    assert -9 / 0.0 = -inf;
+    assert -9.0 / 0.0 = -inf;
+
+    assert 9 / 0 = +inf;
+    assert 9.0 / 0 = +inf;
+    assert -9 / 0 = -inf;
+    assert -9.0 / 0 = -inf;
+}
