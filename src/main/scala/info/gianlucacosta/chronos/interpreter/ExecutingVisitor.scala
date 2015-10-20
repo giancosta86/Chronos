@@ -231,45 +231,6 @@ private class ExecutingVisitor(
   }
 
 
-  override def visit(node: ReadDouble): Unit = {
-    val prompt = visit(node.prompt).toStringAtom.value
-    val inputValue = input.readDouble(prompt)
-
-    val reference = visit(node.reference)
-
-    simulationContext.setReference(reference, inputValue)
-  }
-
-
-  override def visit(node: ReadInt): Unit = {
-    val prompt = visit(node.prompt).toStringAtom.value
-    val inputValue = input.readInt(prompt)
-
-    val reference = visit(node.reference)
-
-    simulationContext.setReference(reference, inputValue)
-  }
-
-
-  override def visit(node: ReadBoolean): Unit = {
-    val prompt = visit(node.prompt).toStringAtom.value
-    val inputValue = input.readBoolean(prompt)
-
-    val reference = visit(node.reference)
-
-    simulationContext.setReference(reference, inputValue)
-  }
-
-
-  override def visit(node: ReadString): Unit = {
-    val prompt = visit(node.prompt).toStringAtom.value
-    val inputValue = input.readString(prompt)
-
-    val reference = visit(node.reference)
-
-    simulationContext.setReference(reference, inputValue)
-  }
-
 
   override def visit(node: CreateFifoQueue): Unit = {
     simulationContext.addQueue(
@@ -544,6 +505,30 @@ private class ExecutingVisitor(
     val sourceAtom = visit(expression.expression)
 
     sourceAtom.getCeil
+  }
+
+
+  override def visit(node: ReadDouble): DoubleAtom = {
+    val prompt = visit(node.prompt).toStringAtom.value
+    input.readDouble(prompt)
+  }
+
+
+  override def visit(node: ReadInt): IntAtom = {
+    val prompt = visit(node.prompt).toStringAtom.value
+    input.readInt(prompt)
+  }
+
+
+  override def visit(node: ReadBoolean): BooleanAtom = {
+    val prompt = visit(node.prompt).toStringAtom.value
+    input.readBoolean(prompt)
+  }
+
+
+  override def visit(node: ReadString): StringAtom = {
+    val prompt = visit(node.prompt).toStringAtom.value
+    input.readString(prompt)
   }
 
 

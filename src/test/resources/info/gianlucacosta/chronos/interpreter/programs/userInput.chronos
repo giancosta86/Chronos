@@ -1,8 +1,8 @@
 event start {
     create sumOperands;
 
-    readDouble "Please, enter a double X: " x(sumOperands);
-    readInt "Please, enter an int Y: " y(sumOperands);
+    x(sumOperands) := readDouble("Please, enter a double X: ");
+    y(sumOperands) := readInt("Please, enter an int Y: ");
 
     z := x(sumOperands) + y(sumOperands);
     println "The result is: " + z;
@@ -12,13 +12,13 @@ event start {
 
     variablePromptString := "Please, enter a boolean: ";
 
-    readBool variablePromptString myBool;
+    myBool := readBool(variablePromptString);
     println myBool;
 
     create book;
 
     variableIntegerInput := 56;
-    readString variableIntegerInput title(book);
+    title(book) := readString(variableIntegerInput);
     println title(book);
 
     destroy book;

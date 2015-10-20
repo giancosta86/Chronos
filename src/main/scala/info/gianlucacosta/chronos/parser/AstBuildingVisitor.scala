@@ -194,31 +194,6 @@ class AstBuildingVisitor extends ChronosBaseVisitor[Node] {
   }
 
 
-  override def visitReadDouble(ctx: ReadDoubleContext): ReadDouble = {
-    val prompt = visitExpression(ctx.prompt().expression());
-    val reference = visitReference(ctx.reference())
-    ReadDouble(prompt, reference, ctx.getStart.getLine)
-  }
-
-  override def visitReadInt(ctx: ReadIntContext): ReadInt = {
-    val prompt = visitExpression(ctx.prompt().expression());
-    val reference = visitReference(ctx.reference())
-    ReadInt(prompt, reference, ctx.getStart.getLine)
-  }
-
-  override def visitReadBoolean(ctx: ReadBooleanContext): ReadBoolean = {
-    val prompt = visitExpression(ctx.prompt().expression());
-    val reference = visitReference(ctx.reference())
-    ReadBoolean(prompt, reference, ctx.getStart.getLine)
-  }
-
-  override def visitReadString(ctx: ReadStringContext): ReadString = {
-    val prompt = visitExpression(ctx.prompt().expression());
-    val reference = visitReference(ctx.reference())
-    ReadString(prompt, reference, ctx.getStart.getLine)
-  }
-
-
   override def visitCreateQueue(ctx: CreateQueueContext): Statement = {
     val queueName = ctx.IDENTIFIER(0).getText
 
@@ -496,6 +471,31 @@ class AstBuildingVisitor extends ChronosBaseVisitor[Node] {
     Ceil(visitExpression(ctx.expression()))
   }
 
+
+  override def visitReadDouble(ctx: ReadDoubleContext): ReadDouble = {
+    val prompt = visitExpression(ctx.prompt().expression())
+    ReadDouble(prompt, ctx.getStart.getLine)
+  }
+
+
+  override def visitReadInt(ctx: ReadIntContext): ReadInt = {
+    val prompt = visitExpression(ctx.prompt().expression())
+    ReadInt(prompt, ctx.getStart.getLine)
+  }
+
+
+  override def visitReadBoolean(ctx: ReadBooleanContext): ReadBoolean = {
+    val prompt = visitExpression(ctx.prompt().expression())
+    ReadBoolean(prompt, ctx.getStart.getLine)
+  }
+
+  
+  override def visitReadString(ctx: ReadStringContext): ReadString = {
+    val prompt = visitExpression(ctx.prompt().expression())
+    ReadString(prompt, ctx.getStart.getLine)
+  }
+
+
   override def visitEmptyCheck(ctx: EmptyCheckContext): IsEmpty = {
 
     IsEmpty(ctx.IDENTIFIER().getText)
@@ -542,6 +542,7 @@ class AstBuildingVisitor extends ChronosBaseVisitor[Node] {
   override def visitCastToString(ctx: CastToStringContext): CastToString = {
     CastToString(visitExpression(ctx.expression()))
   }
+
 
 
   /*

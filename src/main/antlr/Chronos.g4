@@ -232,7 +232,8 @@ functionCall: emptyCheck
         | exponentialRandom
         | cast
         | floor
-        | ceil;
+        | ceil
+        | read;
 
 
 emptyCheck: 'isEmpty' '(' IDENTIFIER ')';
@@ -255,6 +256,15 @@ floor: 'floor' '(' expression ')';
 ceil: 'ceil' '(' expression ')';
 
 
+read: readDouble | readInt | readBoolean | readString;
+
+readDouble: 'readDouble' '(' prompt ')';
+readInt: 'readInt' '(' prompt ')';
+readBoolean: 'readBool' '(' prompt ')';
+readString: 'readString' '(' prompt ')';
+prompt: expression;
+
+
 
 // ------------
 // INPUT/OUTPUT
@@ -262,14 +272,6 @@ ceil: 'ceil' '(' expression ')';
 
 print: 'print' expression;
 println: 'println' expression;
-
-read: readDouble | readInt | readBoolean | readString;
-
-readDouble: 'readDouble' prompt reference;
-readInt: 'readInt' prompt reference;
-readBoolean: 'readBool' prompt reference;
-readString: 'readString' prompt reference;
-prompt: expression;
 
 
 // -------------
