@@ -1,0 +1,11 @@
+event start {
+    create arrival;
+    schedule arrival at 1.9;
+}
+
+
+event arrival {
+    destroy arrival;
+    assert time.v = 1.9;
+    assert now = 1.9;
+}

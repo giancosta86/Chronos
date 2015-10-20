@@ -312,7 +312,7 @@ MINUS_INF: '-inf';
 TRUE: 'true';
 FALSE: 'false';
 STRING: '"' ~["]* '"';
-NOW: 'time.v';
+NOW: 'now' | 'time.v';
 
 
 IDENTIFIER: [A-Za-z_][A-Za-z0-9_]*;

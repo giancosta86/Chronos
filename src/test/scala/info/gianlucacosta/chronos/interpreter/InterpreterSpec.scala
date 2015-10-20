@@ -343,6 +343,11 @@ class InterpreterSpec extends FlatSpec with Matchers {
   }
 
 
+  "Now keyword" should "be legal" in {
+    runProgram("now.chronos")
+  }
+
+
   private def runProgram(
                           programName: String): Unit = {
     val program = TestSourcePool.getProgram(programName)
