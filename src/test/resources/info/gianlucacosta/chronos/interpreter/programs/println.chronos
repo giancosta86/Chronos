@@ -1,0 +1,5 @@
+event start {
+    println "Alpha";
+    println;
+    println "Beta";
+}

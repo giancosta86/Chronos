@@ -20,6 +20,10 @@
 
 package info.gianlucacosta.chronos.interpreter.atoms
 
+case object StringAtom {
+  val Empty = StringAtom("")
+}
+
 
 case class StringAtom(value: String) extends ImmutableAtom {
   override def +(right: Atom): Atom = StringAtom(value + right.toString)

@@ -143,7 +143,7 @@ private class ExecutingVisitor(
 
 
   override def visit(node: Println): Unit = {
-    val outputAtom = visit(node.expression)
+    val outputAtom = node.expression.map(visit).getOrElse(StringAtom.Empty)
 
     output.println(outputAtom)
   }

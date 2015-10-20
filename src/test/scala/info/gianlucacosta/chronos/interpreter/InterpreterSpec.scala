@@ -343,8 +343,16 @@ class InterpreterSpec extends FlatSpec with Matchers {
   }
 
 
-  "Now keyword" should "be legal" in {
+  "now keyword" should "be legal" in {
     runProgram("now.chronos")
+  }
+
+  "println" should "work with and without arguments" in {
+    runProgram("println.chronos", Seq(
+      "Alpha",
+      "",
+      "Beta"
+    ))
   }
 
 

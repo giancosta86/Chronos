@@ -110,7 +110,7 @@ class AstBuildingVisitor extends ChronosBaseVisitor[Node] {
 
 
   override def visitPrintln(ctx: PrintlnContext): Println = {
-    val expression = visitExpression(ctx.expression())
+    val expression = if (ctx.expression() != null) Some(visitExpression(ctx.expression())) else None
 
     Println(expression, ctx.getStart.getLine)
   }

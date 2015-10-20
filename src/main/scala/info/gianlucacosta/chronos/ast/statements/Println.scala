@@ -22,7 +22,7 @@ package info.gianlucacosta.chronos.ast.statements
 
 import info.gianlucacosta.chronos.ast.{AstVisitor, Expression, Statement}
 
-case class Println(expression: Expression, lineNumber: Int) extends Statement {
+case class Println(expression: Option[Expression], lineNumber: Int) extends Statement {
   override def accept[T](visitor: AstVisitor[T]): T =
     visitor.visit(this)
 }

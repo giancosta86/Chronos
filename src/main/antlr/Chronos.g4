@@ -271,7 +271,7 @@ prompt: expression;
 // ------------
 
 print: 'print' expression;
-println: 'println' expression;
+println: 'println' expression?;
 
 
 // -------------
