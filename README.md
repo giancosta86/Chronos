@@ -152,10 +152,10 @@ event start {
 The **println** statement does not require parentheses: this is a common trait in Chronos, but you can always add parentheses, if you wish.
 Statements must *always* end with a semicolon, ";", unless they end with a "}" (for example, the **if** and **while** blocks).
 
-The *start* event is always executed at time 0: the current time is represented by a double, read-only value which can be accessed via the keyword expression **time.v**. For example:
+The *start* event is always executed at time 0: the current time is represented by a double, read-only value which can be accessed via the keyword expression **now** (or **time.v**). For example:
 
 ```
-println time.v + 5;
+println now + 5;
 ```
 
 
@@ -238,23 +238,18 @@ A few predefined functions provide checked, meaningful type conversions:
 A failed conversion will crash the program - therefore, it is important to ensure that input data is correctly typed - which is why the language provides dedicated input statements.
 
 
-### Input statements
+### Input functions
 
-Input is always typed:
+Input is performed by functions:
 
-* **readDouble** *prompt* *reference*
-* **readInt** *prompt* *reference*
-* **readBool** *prompt* *reference*
-* **readString** *prompt* *reference*
+* **readDouble**(*prompt*)
+* **readInt**(*prompt*)
+* **readBool**(*prompt*)
+* **readString**(*prompt*)
 
-where:
+where *prompt* is an expression that will be converted to *String* and shown to the user. It is usually a string literal.
 
-* *prompt* is an expression that will be converted to *String* and shown to the user. It is usually a string literal
-
-* *reference* can be a variable or an attribute - such reference will be assigned - *or created*, if it doesn't already exist
-
-
-The actual implementation of these statements depends on the underlying environment, but it's reasonable to assume, for example, that **readInt** will not return until the user has typed an integer value, and that it will terminate the program in case of interrupted input.
+The actual implementation of these functions depends on the underlying environment, but it's reasonable to assume, for example, that **readInt** will not return until the user has typed an integer value, and that it will terminate the program in case of interrupted input.
 
 
 
@@ -292,7 +287,7 @@ Chronos provides 2 simple statements:
 
 * **print** *expression*: prints out the given expression
 
-* **println** *expression*: prints out the given expression, followed by a newline character
+* **println** *expression*: prints out the given expression, followed by a newline character. Without expression, **println** prints out a blank line
 
 
 ### If statement
@@ -615,7 +610,7 @@ event customEvent {
 
 In the event block, the event notice can be rescheduled, or it can be destroyed, just like other entities; anyway, event notices *must* be destroyed at some point - unless the deallocation check is disabled via global directive, of course.
 
-In both events and procedures, the special constant *time.v* returns the double value of the current simulation time - which is 0 in the *start* event and is automatically increased by the engine as the events flow.
+In both events and procedures, the special constants *now* and *time.v* both return the double value of the current simulation time - which is 0 in the *start* event and is automatically increased by the engine as the events flow.
 
 The **return** keyword stops the current event, making the execution proceed to the next event in the schedule, if available.
 
