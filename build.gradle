@@ -47,7 +47,7 @@ apply plugin: 'info.gianlucacosta.aurora'
 
 group = 'info.gianlucacosta.chronos'
 archivesBaseName = "chronos"
-version = '2.0'
+version = '2.1'
 
 description = 'Programming language for discrete event simulation'
 
