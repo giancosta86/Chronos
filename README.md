@@ -76,6 +76,6 @@ Chronos is described in a friendly [wiki](https://github.com/giancosta86/Chronos
 
 Chronos is an agile, interpreted language - feel free to try it yourself, especially in [Chronos IDE](https://github.com/giancosta86/Chronos-IDE), its visual development environment!
 
-![Chronos IDE - Screenshot](https://github.com/giancosta86/Chronos-IDE/blob/master/Screenshot.png)
+[![Chronos IDE - Screenshot](https://github.com/giancosta86/Chronos-IDE/blob/master/Screenshot.png)](https://github.com/giancosta86/Chronos-IDE)
 
 As a plus, the source code contains a full suite of [test programs](https://github.com/giancosta86/Chronos/tree/master/src/test/resources/info/gianlucacosta/chronos/interpreter/programs), crafted to verify the language features: you might want to check them out as well.
