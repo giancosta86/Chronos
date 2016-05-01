@@ -2,7 +2,7 @@
   ===========================================================================
   Chronos
   ===========================================================================
-  Copyright (C) 2015 Gianluca Costa
+  Copyright (C) 2015-2016 Gianluca Costa
   ===========================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -18,8 +18,6 @@
   ===========================================================================
 */
 
-import org.apache.tools.ant.filters.ReplaceTokens
-
 buildscript {
     repositories {
         maven {
@@ -30,24 +28,27 @@ buildscript {
     }
 
     dependencies {
-        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:3.1'
-        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.1'
-        classpath 'info.gianlucacosta.aurora:aurora:2.1'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
         classpath 'com.github.maiflai:gradle-scalatest:0.8'
+        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.0'
+        classpath 'info.gianlucacosta.aurora:aurora:3.0'
     }
 }
 
 apply plugin: 'scala'
 apply plugin: 'antlr'
 apply plugin: 'application'
+apply plugin: 'maven'
+apply plugin: 'com.jfrog.bintray'
+apply plugin: 'osgi'
 apply plugin: 'com.github.maiflai.scalatest'
-
+apply plugin: 'info.gianlucacosta.moonlicense'
 apply plugin: 'info.gianlucacosta.aurora'
 
 
 group = 'info.gianlucacosta.chronos'
 archivesBaseName = "chronos"
-version = '2.1'
+version = '3.0'
 
 description = 'Programming language for discrete event simulation'
 
@@ -86,7 +87,6 @@ dependencies {
 
 
 aurora {
-    docTask = 'scaladoc'
     gitHubUser = 'giancosta86'
 
     author {
@@ -97,8 +97,6 @@ aurora {
 
 
     bintray {
-        user = project.bintrayUser
-        key = project.bintrayKey
         repo = 'Hephaestus'
         licenses = ['Apache-2.0']
         labels = [
@@ -148,19 +146,3 @@ generateGrammarSource.dependsOn deleteGeneratedFiles
 
 
 clean.dependsOn deleteGeneratedFiles
-
-
-
-processResources {
-    filesMatching('**/Language.properties.xml') {
-        filter ReplaceTokens, tokens: [
-                'name'          : project.moonLicense.productInfo.productName,
-                'version'       : project.version,
-                'copyrightYears': project.moonLicense.getCopyrightYears(),
-                'license'       : project.moonLicense.license.name,
-                'url'           : project.url.toString(),
-                'facebookPage'  : project.facebookPage,
-                'release'       : project.auroraSettings.release.toString()
-        ]
-    }
-}

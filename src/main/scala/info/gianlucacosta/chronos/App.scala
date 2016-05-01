@@ -2,7 +2,7 @@
   ===========================================================================
   Chronos
   ===========================================================================
-  Copyright (C) 2015 Gianluca Costa
+  Copyright (C) 2015-2016 Gianluca Costa
   ===========================================================================
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -57,8 +57,8 @@ object App {
 
 
   private def exitWithUsage(): Unit = {
-    println(s"${Language.name} - Version ${Language.version}")
-    println(s"Copyright © ${Language.copyrightYears} Gianluca Costa")
+    println(s"${ArtifactInfo.name} - Version ${ArtifactInfo.version}")
+    println(s"Copyright © ${ArtifactInfo.copyrightYears} Gianluca Costa")
     println()
     println(s"Usage: <program source file>")
     System.exit(1)

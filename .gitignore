@@ -1,6 +1,7 @@
-.gradle/**
-.idea/**
-build/**
-src/generated/**
-out/**
-*.iml
+/.gradle/**
+/.idea/**
+/build/**
+/src/generated/**
+/out/**
+/*.iml
+/src/main/scala/info/gianlucacosta/chronos/ArtifactInfo.scala
