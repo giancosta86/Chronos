@@ -89,6 +89,8 @@ dependencies {
 aurora {
     gitHubUser = 'giancosta86'
 
+    commandLineApp = true
+
     author {
         name = 'Gianluca Costa'
         email = 'gianluca@gianlucacosta.info'
