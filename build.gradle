@@ -31,7 +31,7 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
         classpath 'com.github.maiflai:gradle-scalatest:0.8'
         classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.0'
-        classpath 'info.gianlucacosta.aurora:aurora:3.0'
+        classpath 'info.gianlucacosta.aurora:aurora:4.0'
     }
 }
 
