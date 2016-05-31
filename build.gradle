@@ -31,7 +31,7 @@ buildscript {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
         classpath 'com.github.maiflai:gradle-scalatest:0.8'
         classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.2'
-        classpath 'info.gianlucacosta.aurora:aurora:5.3'
+        classpath 'info.gianlucacosta.aurora:aurora:5.4'
     }
 }
 
@@ -49,7 +49,7 @@ apply plugin: 'info.gianlucacosta.aurora'
 
 group = 'info.gianlucacosta.chronos'
 archivesBaseName = "chronos"
-version = '3.3'
+version = '3.4'
 
 description = 'Programming language for discrete event simulation'
 
