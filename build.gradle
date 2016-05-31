@@ -124,4 +124,6 @@ generateGrammarSource {
             '-Werror'
     ]
 }
-generateGrammarSource.dependsOn cleanGenerated
+generateGrammarSource.dependsOn("cleanGenerated")
+
+generateArtifactInfo.dependsOn("generateGrammarSource")
