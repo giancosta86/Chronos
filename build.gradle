@@ -30,10 +30,11 @@ buildscript {
     dependencies {
         classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
         classpath 'com.github.maiflai:gradle-scalatest:0.8'
-        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.0'
-        classpath 'info.gianlucacosta.aurora:aurora:4.0'
+        classpath 'info.gianlucacosta.moonlicense:moonlicense-gradle:4.2'
+        classpath 'info.gianlucacosta.aurora:aurora:5.1'
     }
 }
+
 
 apply plugin: 'scala'
 apply plugin: 'antlr'
@@ -48,34 +49,20 @@ apply plugin: 'info.gianlucacosta.aurora'
 
 group = 'info.gianlucacosta.chronos'
 archivesBaseName = "chronos"
-version = '3.0'
+version = '3.1'
 
 description = 'Programming language for discrete event simulation'
 
-
 ext.facebookPage = "https://www.facebook.com/chronos.language"
-
 
 mainClassName = 'info.gianlucacosta.chronos.App'
 
-sourceSets {
-    generated {
-        java {
-            srcDirs = ['src/generated/java']
-        }
-    }
-
-    main {
-        scala {
-            srcDirs += ['src/generated/java']
-        }
-    }
-}
-
 
 dependencies {
+    generatedCompile 'org.scala-lang:scala-library:2.11.7'
+    generatedCompile 'org.antlr:antlr4-runtime:4.5.1'
+
     compile 'org.scala-lang:scala-library:2.11.7'
-    compile 'org.antlr:antlr4-runtime:4.5.1'
     compile 'org.scala-lang:scala-xml:2.11.0-M4'
 
     testCompile 'org.scalatest:scalatest_2.11:2.2.5'
@@ -83,7 +70,6 @@ dependencies {
 
     antlr 'org.antlr:antlr4:4.5.1'
 }
-
 
 
 aurora {
@@ -96,7 +82,6 @@ aurora {
         email = 'gianluca@gianlucacosta.info'
         url = 'http://gianlucacosta.info/'
     }
-
 
     bintray {
         repo = 'Hephaestus'
@@ -130,11 +115,6 @@ moonLicense {
 
 
 
-
-task deleteGeneratedFiles(type: Delete) {
-    delete 'src/generated'
-}
-
 generateGrammarSource {
     outputDirectory = project.file("src/generated/java/info/gianlucacosta/chronos/parser")
     arguments += [
@@ -144,7 +124,4 @@ generateGrammarSource {
             '-Werror'
     ]
 }
-generateGrammarSource.dependsOn deleteGeneratedFiles
-
-
-clean.dependsOn deleteGeneratedFiles
+generateGrammarSource.dependsOn cleanGenerated
